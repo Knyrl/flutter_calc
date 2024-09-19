@@ -10,112 +10,24 @@ class Ceyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Column(
-        children: [
-          CeyboardRow(
-            names: [
-              "c",
-              Icons.backspace_outlined,
-              Icons.percent_outlined,
-              "/",
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CalculatorButton(
-                  name: '7',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '8',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '9',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: 'x',
-                  icon: Icons.close,
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CalculatorButton(
-                  name: '4',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '5',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '6',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '-',
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CalculatorButton(
-                  name: '1',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '2',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '3',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '+',
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Spacer(),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: '0',
-                ),
-              ),
-              Expanded(
-                child: CalculatorButton(
-                  name: ',',
-                ),
-              ),
-              Expanded(
-                child: Spacer(),
-              )
-            ],
-          ),
-        ],
-      ),
+    return const Column(
+      children: [
+        CeyboardRow(
+          names: ['C', Icons.backspace_outlined, Icons.percent, '/'],
+        ),
+        CeyboardRow(
+          names: ['7', '8', '9', Icons.close],
+        ),
+        CeyboardRow(
+          names: ['4', '5', '6', '-'],
+        ),
+        CeyboardRow(
+          names: ['1', '2', '3', '+'],
+        ),
+        CeyboardRow(
+          names: ['00', '0', '.', '00'],
+        ),
+      ],
     );
   }
 }
@@ -125,36 +37,25 @@ class CeyboardRow extends StatelessWidget {
     super.key,
     required this.names,
   });
-
-  // final Map<Object, String> namesList;
   final List<Object> names;
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Expanded(
-          child: CalculatorButton(
-            name: "C",
-          ),
+    return Row(
+      children: List.generate(
+        names.length,
+        (index) => Expanded(
+          child: names[index].toString() == '00'
+              ? const Spacer()
+              : names[index] is String
+                  ? CalculatorButton(
+                      name: names[index].toString(),
+                    )
+                  : CalculatorButton(
+                      name: names[index].toString(),
+                      icon: names[index] as IconData,
+                    ),
         ),
-        Expanded(
-          child: CalculatorButton(
-            name: 'del',
-            icon: Icons.backspace_outlined,
-          ),
-        ),
-        Expanded(
-          child: CalculatorButton(
-            name: '%',
-            icon: Icons.percent,
-          ),
-        ),
-        Expanded(
-          child: CalculatorButton(
-            name: '/',
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
