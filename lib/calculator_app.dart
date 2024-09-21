@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/theme/theme.dart';
+import 'package:get/get.dart';
 
 import 'routes/routes.dart';
 
@@ -9,7 +10,7 @@ class Calculator extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "My own calculator",
       theme: theme,

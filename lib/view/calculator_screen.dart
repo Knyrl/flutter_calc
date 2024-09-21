@@ -1,55 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_calculator/features/widgets/ceyboard.dart';
+import 'package:flutter_calculator/controller/calculator_controller.dart';
+import 'package:flutter_calculator/features/widgets/Keyboard.dart';
+import 'package:get/get.dart';
 
-class CalculatorScreen extends StatefulWidget {
+class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen({super.key});
-
-  @override
-  CalculatorScreenState createState() => CalculatorScreenState();
-}
-
-class CalculatorScreenState extends State<CalculatorScreen> {
-  Widget body() {
-    final theme = Theme.of(context);
-    return Column(
-      children: [
-        Expanded(
-          child: Center(
-            child: Text(
-              // _output,
-              'пупупупу',
-              // textAlign: TextAlign.end,
-              style: theme.textTheme.labelLarge,
-            ),
-          ),
-        ),
-        const Ceyboard(),
-      ],
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final CalculatorController controller = Get.put(CalculatorController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.colorScheme.inversePrimary,
         title: const Text('Calculator'),
       ),
-      body: body(),
+      body: Column(
+        children: [
+          Expanded(
+            child: Align(
+              alignment: Alignment.center,
+              child: Obx(
+                () => Text("${controller.userInput} ${controller.result}",
+                    style: theme.textTheme.titleLarge),
+              ),
+            ),
+          ),
+          const Expanded(
+            flex: 2,
+            child: Keyboard(),
+          ),
+        ],
+      ),
     );
   }
-
-  // Widget _buildButton(String value) {
-  //   return ElevatedButton(
-  //     onPressed: () {
-  //       if (value == 'C') {
-  //         _onClearPressed();
-  //       } else {
-  //         _onButtonPressed(value);
-  //       }
-  //     },
-  //     child: Text(value),
-  //   );
-  // }
 }
