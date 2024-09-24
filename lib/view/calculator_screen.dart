@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/controller/calculator_controller.dart';
 import 'package:flutter_calculator/features/widgets/Keyboard.dart';
+import 'package:flutter_calculator/features/widgets/weather_button.dart';
 import 'package:get/get.dart';
 
 class CalculatorScreen extends StatelessWidget {
@@ -12,8 +13,15 @@ class CalculatorScreen extends StatelessWidget {
     final CalculatorController controller = Get.put(CalculatorController());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.inversePrimary,
-        title: const Text('Calculator'),
+        // backgroundColor: theme.colorScheme.primary,
+        title: Text(
+          'Calculator',
+          style: theme.textTheme.titleMedium,
+        ),
+        actions: const [
+          SizedBox(width: 10),
+          WeatherButton(),
+        ],
       ),
       body: Column(
         children: [

@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_calculator/controller/calculator_controller.dart';
 
@@ -11,6 +10,7 @@ class Keyboard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    // final theme = Theme.of(context);
     return const Column(
       children: [
         Expanded(
@@ -80,8 +80,7 @@ class KeyboardRow extends StatelessWidget {
                       : names[index] == "="
                           ? CalculatorButton(
                               buttonTapped: () {
-                                Get.find<CalculatorController>()
-                                    .calculate(names[index]);
+                                Get.find<CalculatorController>().calculate();
                               },
                               name: names[index],
                             )
