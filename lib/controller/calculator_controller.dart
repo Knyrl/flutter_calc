@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
-import 'package:popover/popover.dart';
 
 class CalculatorController extends GetxController {
   RxString userInput = "".obs;

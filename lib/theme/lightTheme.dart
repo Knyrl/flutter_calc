@@ -10,7 +10,7 @@ ThemeData lightTheme = ThemeData(
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Colors.white,
-      fontSize: 30,
+      fontSize: 25,
     ),
     titleMedium: TextStyle(
       color: Colors.white,

@@ -18,9 +18,22 @@ class CalculatorScreen extends StatelessWidget {
           'Calculator',
           style: theme.textTheme.titleMedium,
         ),
-        actions: const [
-          SizedBox(width: 10),
+        actions: [
+          const SizedBox(width: 10),
           WeatherButton(),
+          IconButton(
+            icon: Icon(theme.brightness == Brightness.light
+                ? Icons.dark_mode
+                : Icons.light_mode),
+            color: theme.textTheme.titleLarge!.color,
+            onPressed: () {
+              Get.changeThemeMode(
+                theme.brightness == Brightness.light
+                    ? ThemeMode.dark
+                    : ThemeMode.light,
+              );
+            },
+          ),
         ],
       ),
       body: Column(
