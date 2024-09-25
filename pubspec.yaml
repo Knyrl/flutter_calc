@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   math_expressions: ^2.6.0
   popover: ^0.3.1
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
