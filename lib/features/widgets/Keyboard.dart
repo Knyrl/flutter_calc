@@ -11,34 +11,37 @@ class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final theme = Theme.of(context);
-    return const Column(
-      children: [
-        Expanded(
-          child: KeyboardRow(
-            names: ['C', '⌫', '%', '/'],
+    return const SafeArea(
+      minimum: EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Expanded(
+            child: KeyboardRow(
+              names: ['C', '⌫', '%', '/'],
+            ),
           ),
-        ),
-        Expanded(
-          child: KeyboardRow(
-            names: ['7', '8', '9', 'x'],
+          Expanded(
+            child: KeyboardRow(
+              names: ['7', '8', '9', 'x'],
+            ),
           ),
-        ),
-        Expanded(
-          child: KeyboardRow(
-            names: ['4', '5', '6', '−'],
+          Expanded(
+            child: KeyboardRow(
+              names: ['4', '5', '6', '−'],
+            ),
           ),
-        ),
-        Expanded(
-          child: KeyboardRow(
-            names: ['1', '2', '3', '+'],
+          Expanded(
+            child: KeyboardRow(
+              names: ['1', '2', '3', '+'],
+            ),
           ),
-        ),
-        Expanded(
-          child: KeyboardRow(
-            names: ['00', '0', '.', '='],
+          Expanded(
+            child: KeyboardRow(
+              names: ['00', '0', '.', '='],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -56,9 +59,10 @@ class KeyboardRow extends StatelessWidget {
       children: List.generate(
         names.length,
         (index) => Expanded(
-          child: names[index] == '00'
+          child: /*names[index] == 'OO'// Условие создания пустышки если вдруг понадобится))
               ? const Spacer()
-              : names[index] == "C"
+              :*/
+              names[index] == "C"
                   ? CalculatorButton(
                       buttonTapped: () {
                         Get.find<CalculatorController>().clearData();

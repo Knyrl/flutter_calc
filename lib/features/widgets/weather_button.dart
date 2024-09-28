@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calculator/features/geolocation.dart';
 import 'package:flutter_calculator/features/widgets/weather_info.dart';
 import 'package:popover/popover.dart';
 import 'package:get/get.dart';
 
-import '../../repository/models/weather.dart';
 import '../../repository/weather_repository.dart';
 import '../../controller/weather_controller.dart';
 
@@ -21,7 +21,9 @@ class WeatherButton extends StatelessWidget {
         onTap: () async {
           if (_weatherController.weather == null) {
             _weatherController.isLoading = true;
-            final weather = await WeatherRepository().getWeather();
+            final position = await determinePosition();
+            final weather = await WeatherRepository().getWeather(
+                position.longitude.toString(), position.latitude.toString());
             _weatherController.weather = weather;
             _weatherController.isLoading = false;
           } else {
@@ -60,35 +62,4 @@ class WeatherButton extends StatelessWidget {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   Weather? _weather;
-  //   final theme = Theme.of(context);
-  //   return Padding(
-  //     padding: const EdgeInsets.all(16.0),
-  //     child: GestureDetector(
-  //       onTap: () async {
-  //         _weather == null
-  //             ? _weather = await WeatherRepository().getWeather()
-  //             : showPopover(
-  //                 context: context,
-  //                 bodyBuilder: (context) => WeatherInfo(
-  //                   temperature: _weather!.temperature,
-  //                   weatehrCode: _weather!.weatehrCode,
-  //                 ),
-  //                 backgroundColor: theme.colorScheme.primary,
-  //                 radius: 8,
-  //                 transition: PopoverTransition.scale,
-  //                 arrowWidth: 16,
-  //                 arrowHeight: 6,
-  //               );
-  //       },
-  //       child: Icon(
-  //          Icons.wb_cloudy,
-  //         color: theme.textTheme.titleLarge!.color,
-  //       ),
-  //     ),
-  //   );
-  // }
 }
